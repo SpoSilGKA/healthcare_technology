@@ -1,0 +1,17 @@
+version: '3'
+services:
+  postgres_db:
+    image: postgres:15-alpine
+    container_name: healthcare_test_db
+    environment:
+      POSTGRES_USER: lab_admin
+      POSTGRES_PASSWORD: SecretPassword123
+      POSTGRES_DB: laboratory_lims
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+  pgdata:
+
